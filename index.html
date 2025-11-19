@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>songs that remind me of you</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #1b1b1b;
-            color: white;
-            text-align: center;
-            padding-top: 40px;
-        }
-        button {
-            padding: 12px 20px;
-            font-size: 18px;
-            border: none;
-            background: #ff0000;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #cc0000;
-        }
-        iframe {
-            margin-top: 30px;
-            border-radius: 12px;
-        }
-    </style>
+  <title>songs that remind me of you</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #1b1b1b;
+      color: white;
+      text-align: center;
+      padding-top: 40px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      background: #ff0000;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #cc0000;
+    }
+    iframe {
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
 
-<h1>songs that remind me of you</h1>
+  <h1>songs that remind me of you</h1>
+  <button onclick="loadRandomVideo()">click it nigga</button>
+  <div id="video-container"></div>
 
-<button onclick="loadRandomVideo()">click it nigga</button>
+  <script>
+    const videoUrls = [
+      "https://youtu.be/HRbgGQ7rHi0?si=raypkRpTj4n6vORD",
+      "https://youtu.be/hgcD6jTU3Vg?si=3wDcD_4XWnHTQBUJ",
+      "https://youtu.be/PLgKjn5Ra-w?si=9WPdQV00Q_qerZyT",
+      "https://youtu.be/WWC3UNL61Zc?si=OfrC2lROvnwRqgSA",
+      "https://youtu.be/Rd_Cty4VWG8?si=Up1UDb2V45UsW6bu",
+      "https://youtu.be/H-H7TyW0ejg?si=WxqYgqKPuVSuyqph",
+      "https://youtu.be/ULE_PJ1cwuA?si=jXAPUUntVFQaLZ6m",
+      "https://youtu.be/fnzQISf8us4?si=w4xeuF7la5Sfdbfl",
+      "https://youtu.be/wAJKf7pEhUE?si=Vqfy2-vOWvLopOd6",
+      "https://youtu.be/UeJFUtiuPXU?si=WHjUIr6D_myJG057"
+    ];
 
-<div id="video-container"></div>
-
-<script>
-    const videoList = [
-        "raypkRpTj4n6vORD",
-        "3wDcD_4XWnHTQBUJ",
-        "9WPdQV00Q_qerZyT",
-        "OfrC2lROvnwRqgSA",
-        "Up1UDb2V45UsW6bu",
-        "WxqYgqKPuVSuyqph",
-        "jXAPUUntVFQaLZ6m",
-        "w4xeuF7la5Sfdbfl",
-        "Vqfy2-vOWvLopOd6",
-        "WHjUIr6D_myJG057",
-        
-       
-     ];
+    function getYoutubeID(url) {
+      try {
+        const u = new URL(url);
+        if (u.hostname === 'youtu.be') {
+          return u.pathname.slice(1);
+        } else if (u.hostname.includes('youtube.com')) {
+          return u.searchParams.get('v');
+        }
+      } catch (e) {
+        console.warn('Invalid URL', url);
+      }
+      return null;
+    }
 
     function loadRandomVideo() {
-        
-        const randomId = videoList[Math.floor(Math.random() * videoList.length)];
+      const randomUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
+      const videoId = getYoutubeID(randomUrl);
+      if (!videoId) {
+        console.error('Could not get YouTube ID for URL:', randomUrl);
+        return;
+      }
 
-        
-        const embedUrl = `https://www.youtube.com/embed/${randomId}?autoplay=1`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
-        
-        document.getElementById("video-container").innerHTML = `
-            <iframe width="800" height="450" 
-                src="${embedUrl}" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        `;
+      document.getElementById("video-container").innerHTML = `
+        <iframe width="800" height="450" 
+          src="${embedUrl}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      `;
     }
-</script>
-
+  </script>
 </body>
 </html>
