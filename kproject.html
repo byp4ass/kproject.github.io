@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>songs that remind me of you</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #1b1b1b;
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            background: #ff0000;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+        iframe {
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>songs that remind me of you</h1>
+
+<button onclick="loadRandomVideo()">click it nigga</button>
+
+<div id="video-container"></div>
+
+<script>
+    const videoList = [
+        "raypkRpTj4n6vORD",
+        "3wDcD_4XWnHTQBUJ",
+        "9WPdQV00Q_qerZyT",
+        "OfrC2lROvnwRqgSA",
+        "Up1UDb2V45UsW6bu",
+        "WxqYgqKPuVSuyqph",
+        "jXAPUUntVFQaLZ6m",
+        "w4xeuF7la5Sfdbfl",
+        "Vqfy2-vOWvLopOd6",
+        "WHjUIr6D_myJG057",
+        
+       
+     ];
+
+    function loadRandomVideo() {
+        
+        const randomId = videoList[Math.floor(Math.random() * videoList.length)];
+
+        
+        const embedUrl = `https://www.youtube.com/embed/${randomId}?autoplay=1`;
+
+        
+        document.getElementById("video-container").innerHTML = `
+            <iframe width="800" height="450" 
+                src="${embedUrl}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        `;
+    }
+</script>
+
+</body>
+</html>
