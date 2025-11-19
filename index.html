@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<script>
-
-  <title>songs that remind me of you</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #1b1b1b;
-      color: white;
-      text-align: center;
-      padding-top: 40px;
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      background: #ff0000;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #cc0000;
-    }
-    iframe {
-      margin-top: 30px;
-      border-radius: 12px;
-    }
-  </style>
+<html>
+<head>
+    <title>songs that remind me of you</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #1b1b1b;
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            background: #ff0000;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+        iframe {
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>songs that remind me of you</h1>
-  <button onclick="loadRandomVideo()">click it</button>
-  <div id="video-container"></div>
+<h1>songs that remind me of you</h1>
+<button onclick="loadRandomVideo()">click it</button>
 
+<div id="video-container"></div>
 
+<script>
 const soundcloudLinks = [
     "https://soundcloud.com/liluzivert/444-222",
     "https://soundcloud.com/trippieredd/love-scars",
@@ -43,9 +44,7 @@ const soundcloudLinks = [
     "https://soundcloud.com/juicewrld999/robbery"
 ];
 
-
 function loadRandomVideo() {
-
     const randomUrl = soundcloudLinks[Math.floor(Math.random() * soundcloudLinks.length)];
 
     const embedUrl =
@@ -54,13 +53,15 @@ function loadRandomVideo() {
         "&color=%23ff5500&auto_play=true";
 
     document.getElementById("video-container").innerHTML = `
-        <iframe width="800" height="200" 
-            scrolling="no" 
-            frameborder="no" 
+        <iframe width="800" height="200"
+            scrolling="no"
+            frameborder="no"
             allow="autoplay"
             src="${embedUrl}">
         </iframe>
     `;
 }
-
 </script>
+
+</body>
+</html>
